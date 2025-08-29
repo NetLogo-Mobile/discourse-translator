@@ -125,6 +125,8 @@ module DiscourseTranslator
           # we need to add the first post to the detection text
           first_post = get_untranslated(translatable.first_post, raw: true)
           text = text + " " + first_post if first_post
+        elsif translatable.class.name == "Post"
+          text = translatable.topic.title + " " + text
         end
 
         text.truncate(DETECTION_CHAR_LIMIT, omission: nil)
