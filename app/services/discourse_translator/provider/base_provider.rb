@@ -129,7 +129,7 @@ module DiscourseTranslator
           text = translatable.topic.title + " " + text
         end
 
-        text.truncate(DETECTION_CHAR_LIMIT, omission: nil)
+        ActionView::Base.full_sanitizer.sanitize(text).truncate(DETECTION_CHAR_LIMIT, omission: nil)
       end
 
       def self.text_for_translation(translatable, raw: false)
